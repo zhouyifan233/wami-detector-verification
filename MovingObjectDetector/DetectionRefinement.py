@@ -80,7 +80,7 @@ class DetectionRefinement:
         ##    #print (new_x)
         ##  #raise Exception ('...')
         ##  X[self.refinementID]=125.5
-        predictResults = self.model_binary.predict(X, batch_size=5000, verbose=0)
+        predictResults = self.model_binary.predict(X, batch_size=1000, verbose=0)
 
         mask2 = np.zeros(len(predictResults), dtype=np.bool)
         for idx in range(len(predictResults)):

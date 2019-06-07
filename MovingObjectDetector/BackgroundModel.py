@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import ImageProcFunc as ImageProcessing
+import MovingObjectDetector.ImageProcFunc as ImageProcessing
 import matplotlib.pyplot as plt
 import skimage.measure as measure
 import skimage.filters as filters
