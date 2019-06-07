@@ -1,32 +1,34 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-from MovingObjectDetector.BackgroundModel import BackgroundModel
-from MovingObjectDetector.DetectionRefinement import DetectionRefinement
+from BackgroundModel import BackgroundModel
+from DetectionRefinement import DetectionRefinement
 import sys
 #sys.path.insert(0,'../TrainNetwork')
-import MovingObjectDetector.BaseFunctions as basefunctions
+import BaseFunctions as basefunctions
 import timeit
-#sys.path.insert(0,'../SimpleTracker')
-from SimpleTracker.KalmanFilter import KalmanFilter
+sys.path.insert(0,'../SimpleTracker')
+from KalmanFilter import KalmanFilter
 from copy import copy
-from MovingObjectDetector.BaseFunctions2 import TimePropagate, TimePropagate_, draw_error_ellipse2d
+from BaseFunctions2 import TimePropagate, TimePropagate_, draw_error_ellipse2d
 import hdf5storage
 from copy import deepcopy as deepcopy
 
 input_image_idx = 10
 
+wasabi_directory = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/"
+
 ROI_centre = [4000, 5000]
 ROI_window = 2000
 image_idx_offset = 0
 num_of_template = 4
-imagefolder = "C:/WPAFB-images/training/"
+imagefolder = wasabi_directory+"WAPAFB_images_train/training/"
 writeimagefolder = "./savefig/"
-model_folder = "C:/Users/yifan/Google Drive/PythonSync/wasabi-detection-python-verification/Models/"
+model_folder = wasabi_directory+"Models/"
 model_binary, aveImg_binary, model_regression, aveImg_regression = basefunctions.ReadModels(model_folder)
 
 # load transformation matrices
-matlabfile = hdf5storage.loadmat('C:/Users/yifan/Google Drive/PythonSync/wasabi-detection-python-verification/Models/Data/TransformationMatrices_train.mat')
+matlabfile = hdf5storage.loadmat(wasabi_directory+'Models/Data/TransformationMatrices_train.mat')
 TransformationMatrices = matlabfile.get("TransMatrix")
 
 # Load background

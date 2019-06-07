@@ -1,13 +1,14 @@
 import numpy as np
 import sys
-#sys.path.insert(0,'../TrainNetwork')
-import TrainNetwork.BaseFunctions as bf
+sys.path.insert(0,'../TrainNetwork')
+import BaseFunctions as bf
 from sklearn.neighbors import NearestNeighbors
 import skimage.measure as measure
 import cv2
 import matplotlib.pyplot as plt
-#sys.path.insert(0, '/home/syc/Dropbox/workspace/liverpool/DeepConcolic/src')
-from DeepConcolic.mcdc import mcdc
+DeepConcolic_directory = "/Users/xiaowei/Dropbox/temporary_buffer/code/DeepConcolic/"
+sys.path.insert(0, DeepConcolic_directory+'src')
+from mcdc import mcdc
 
 class DetectionRefinement:
 
