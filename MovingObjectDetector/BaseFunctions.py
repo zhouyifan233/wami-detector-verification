@@ -46,4 +46,6 @@ def draw_error_ellipse2d(image, mu, sigma, color="k"):
                 valid_points_c.append(pointsc[i])
         image[valid_points_r, valid_points_c, 1] = 255
     return image
+    
+
 

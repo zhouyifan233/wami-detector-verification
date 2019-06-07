@@ -10,7 +10,7 @@ import timeit
 sys.path.insert(0,'../SimpleTracker')
 from KalmanFilter import KalmanFilter
 from copy import copy
-from BaseFunctions2 import TimePropagate, TimePropagate_, draw_error_ellipse2d
+from BaseFunctions2 import TimePropagate, TimePropagate_, draw_error_ellipse2d, showImage
 import hdf5storage
 from copy import deepcopy as deepcopy
 
@@ -19,9 +19,9 @@ input_image_idx = 10
 wasabi_directory = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/"
 
 ROI_centre = [4000, 5000]
-ROI_window = 2000
+ROI_window = 1000 #2000
 image_idx_offset = 0
-num_of_template = 4
+num_of_template = 3 #4
 imagefolder = wasabi_directory+"WAPAFB_images_train/training/"
 writeimagefolder = "./savefig/"
 model_folder = wasabi_directory+"Models/"
@@ -43,11 +43,11 @@ for i in range(num_of_template):
 bgt = BackgroundModel(num_of_template=num_of_template, templates=images)
 
 # initialise Kalman filter
-kf = KalmanFilter(np.array([[2989], [1961], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
+kf = KalmanFilter(np.array([[1400], [886], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
 #kf1 = KalmanFilter(np.array([[2989], [1961], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
 detections_all = []
-refinementID=None
-for i in range(30):
+refinementID = None
+for i in range(10):
     starttime = timeit.default_timer()
     # Read input image
     frame_idx = input_image_idx+image_idx_offset+i
@@ -76,51 +76,50 @@ for i in range(30):
         # the id in the regressed detections
         regressionID = kf.NearestNeighbourAssociator(regressedDetections)
         # the id in the refinement detections (input to the CNN)
-        old_kfz=kf.z
+        old_kfz = kf.z
         refinementID = dr.refinedDetectionsID[regressionID]
 
-        if len(refinementID[0])==1 and i>2:
-          #######
-          #######  here to play 'attack': to call the dr again with refinementID
-          frame_idx = input_image_idx+image_idx_offset+i
-          ReadImage = cv2.imread(imagefolder + "frame%06d.png" % frame_idx, cv2.IMREAD_GRAYSCALE)
-          input_image = ReadImage[ROI_centre[1]-ROI_window:ROI_centre[1]+ROI_window+1, ROI_centre[0]-ROI_window:ROI_centre[0]+ROI_window+1]
-          ROI_centre = TimePropagate_(ROI_centre, TransformationMatrices[frame_idx-1][0])
-          ROI_centre = [int(i) for i in ROI_centre]
+        if isinstance(refinementID, np.int64) and (i > 2):
+            #######  here to play 'attack': to call the dr again with refinementID
+            frame_idx = input_image_idx+image_idx_offset+i
+            ReadImage = cv2.imread(imagefolder + "frame%06d.png" % frame_idx, cv2.IMREAD_GRAYSCALE)
+            input_image = ReadImage[ROI_centre[1]-ROI_window:ROI_centre[1]+ROI_window+1, ROI_centre[0]-ROI_window:ROI_centre[0]+ROI_window+1]
+            ROI_centre = TimePropagate_(ROI_centre, TransformationMatrices[frame_idx-1][0])
+            ROI_centre = [int(i) for i in ROI_centre]
 
-          Hs = bgt.doCalculateHomography(input_image)
-          bgt.doMotionCompensation(Hs, input_image.shape)
-          BackgroundSubtractionCentres, BackgroundSubtractionProperties = bgt.doBackgroundSubtraction(input_image, thres=10)
+            Hs = bgt.doCalculateHomography(input_image)
+            bgt.doMotionCompensation(Hs, input_image.shape)
+            BackgroundSubtractionCentres, BackgroundSubtractionProperties = bgt.doBackgroundSubtraction(input_image, thres=10)
 
-          dr = DetectionRefinement(input_image, bgt.getCompensatedImages(), BackgroundSubtractionCentres, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression)
-          #########
-          dr.refinementID=refinementID[0][0]
-          #dr.refinementID=None
-          refinedDetections, refinedProperties = dr.doMovingVehicleRefinement()
-          regressedDetections = dr.doMovingVehiclePositionRegression()
-          regressedDetections = np.asarray(regressedDetections)
-          dr.refinementID=None
+            dr = DetectionRefinement(input_image, bgt.getCompensatedImages(), BackgroundSubtractionCentres, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression)
+            #########
+            dr.refinementID=refinementID
+            #dr.refinementID=None
+            refinedDetections, refinedProperties = dr.doMovingVehicleRefinement()
+            regressedDetections = dr.doMovingVehiclePositionRegression()
+            regressedDetections = np.asarray(regressedDetections)
+            dr.refinementID=None
 
-          kf1.TimePropagate(Hs[num_of_template-1])
-          kf1.predict()
-          # the id in the regressed detections
-          print ('==== old regressionID', regressionID)
-          regressionID = kf1.NearestNeighbourAssociator(regressedDetections)
-          new_kfz=kf1.z
-          print ('*********************')
-          print (old_kfz)
-          print ('####')
-          print (new_kfz)
-          print ('*********************')
-          print ('==== new regressionID', regressionID)
-          # the id in the refinement detections (input to the CNN)
-          print ('#### old refinementID', refinementID)
-          refinementID = dr.refinedDetectionsID[regressionID]
-          print ('#### new refinementID', refinementID)
-          #kf1_flag=True
-          kf=deepcopy(kf1)
-          #######
-          #######
+            kf1.TimePropagate(Hs[num_of_template-1])
+            kf1.predict()
+            # the id in the regressed detections
+            print ('==== old regressionID', regressionID)
+            regressionID = kf1.NearestNeighbourAssociator(regressedDetections)
+            new_kfz=kf1.z
+            print ('*********************')
+            print (old_kfz)
+            print ('####')
+            print (new_kfz)
+            print ('*********************')
+            print ('==== new regressionID', regressionID)
+            # the id in the refinement detections (input to the CNN)
+            print ('#### old refinementID', refinementID)
+            refinementID = dr.refinedDetectionsID[regressionID]
+            print ('#### new refinementID', refinementID)
+            #kf1_flag=True
+            kf=deepcopy(kf1)
+            #######
+            #######
 
         #if kf1_flag: kf=deepcopy(kf1)
         """"""

@@ -50,3 +50,7 @@ def draw_error_ellipse2d(image, mu, sigma, color="k"):
         else: image[valid_points_r, valid_points_c, 1] = 0
     return image
 
+def showImage(image): 
+    import matplotlib.pyplot as plt
+    imgplot = plt.imshow(image)
+    plt.show()
