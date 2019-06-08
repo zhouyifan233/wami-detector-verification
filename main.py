@@ -21,7 +21,7 @@ def main():
                       help="ROI_centre")
     parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
                       help="ROI_centre")
-    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="~/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="../../../wasabi-detection-python-new/WAPAFB_images_train/training/",
                       help="ROI_centre")
                       
     args=parser.parse_args()
