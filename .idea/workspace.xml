@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea230193-7793-4b86-b92a-3cf8f1746521" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/wasabi-detection-python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wasabi-detection-python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,10 +36,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py">
+        <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
+            <state relative-caret-position="340">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DeepConcolic/mcdc.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+              <folding>
+                <element signature="e#43#53#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MovingObjectDetector/BackgroundModel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MovingObjectDetector/BaseFunctions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-849">
+              <caret line="125" column="43" lean-forward="true" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -93,16 +138,16 @@
         <option value="$PROJECT_DIR$/TrainNetwork/BaseFunctions.py" />
         <option value="$PROJECT_DIR$/DeepConcolic/mcdc.py" />
         <option value="$PROJECT_DIR$/SimpleTracker/KalmanFilter.py" />
-        <option value="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" />
         <option value="$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py" />
         <option value="$PROJECT_DIR$/MovingObjectDetector/BackgroundModel.py" />
+        <option value="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" />
         <option value="$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1022" />
-    <option name="y" value="-27" />
+    <option name="y" value="-28" />
     <option name="width" value="1799" />
     <option name="height" value="1050" />
   </component>
@@ -111,7 +156,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,16 +163,25 @@
               <item name="wami-detector-verification" type="b2602c69:ProjectViewProjectNode" />
               <item name="wami-detector-verification" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="wami-detector-verification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wami-detector-verification" type="462c0819:PsiDirectoryNode" />
+              <item name="MovingObjectDetector" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -190,7 +243,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\yifan\Google Drive\PythonSync\wami-detector-verification\MovingObjectDetector\run_detection_main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -204,7 +257,6 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DISPLAY" value="true" />
       </envs>
       <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
@@ -213,7 +265,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\yifan\Google Drive\PythonSync\wami-detector-verification\MovingObjectDetector\run_detection_batch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -301,8 +353,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_detection_batch" />
-        <item itemvalue="Python.run_detection_batch" />
-        <item itemvalue="Python.run_detection_batch" />
+        <item itemvalue="Python.run_detection_main" />
+        <item itemvalue="Python.run_detection_main" />
         <item itemvalue="Python.run_detection_batch" />
         <item itemvalue="Python.run_detection_batch" />
       </list>
@@ -360,12 +412,21 @@
       <workItem from="1559936934023" duration="1016000" />
       <workItem from="1559938118557" duration="864000" />
       <workItem from="1559939285454" duration="542000" />
-      <workItem from="1559939863617" duration="1456000" />
+      <workItem from="1559939863617" duration="2406000" />
+      <workItem from="1560012282152" duration="3135000" />
     </task>
+    <task id="LOCAL-00001" summary="add low memory version">
+      <created>1559941383988</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559941383988</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202269000" />
+    <option name="totallyTimeSpent" value="203946000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -378,9 +439,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1865" height="1218" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5602504" visible="true" weight="0.18428335" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5602504" visible="true" weight="0.18206973" />
       <window_info id="Structure" order="1" sideWeight="0.4397496" side_tool="true" weight="0.21333334" />
       <window_info id="Favorites" order="2" sideWeight="0.41627544" side_tool="true" weight="0.21147357" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -393,18 +453,45 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3298872" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013835" side_tool="true" weight="0.36090225" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005624" side_tool="true" weight="0.25299892" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32637364" />
-      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4986165" visible="true" weight="0.36090225" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49943757" visible="true" weight="0.33458647" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" auto_hide="true" x="441" y="58" width="896" height="909" id="SciView" order="3" show_stripe_button="false" type="FLOATING" weight="0.15016873" />
       <window_info anchor="right" id="Database" order="4" weight="0.3295838" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5602504" visible="true" weight="0.25396827" />
+      <window_info id="Structure" order="1" sideWeight="0.4397496" side_tool="true" weight="0.21333334" />
+      <window_info id="Favorites" order="2" sideWeight="0.41627544" side_tool="true" weight="0.21147357" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.45824176" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32747254" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005624" side_tool="true" weight="0.25299892" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32637364" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49943757" visible="true" weight="0.36263737" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" auto_hide="true" x="441" y="58" width="896" height="909" id="SciView" order="3" show_stripe_button="false" type="FLOATING" weight="0.15016873" />
+      <window_info anchor="right" id="Database" order="4" weight="0.3295838" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add low memory version" />
+    <option name="LAST_COMMIT_MESSAGE" value="add low memory version" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/TrainNetwork/Regression/run_train_network.py">
@@ -463,16 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="34" lean-forward="true" selection-end-line="46" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -574,20 +651,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py">
+    <entry file="file://$PROJECT_DIR$/DeepConcolic/deepconcolic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        <state relative-caret-position="-980">
+          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DeepConcolic/attacks.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/DeepConcolic/deepconcolic.py">
+    <entry file="file://$PROJECT_DIR$/MovingObjectDetector/BackgroundModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-980">
-          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        <state relative-caret-position="100">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -613,25 +690,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DeepConcolic/mcdc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        <state relative-caret-position="420">
+          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding>
             <element signature="e#43#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MovingObjectDetector/BackgroundModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="-849">
+          <caret line="125" column="43" lean-forward="true" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -640,8 +710,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
+        <state relative-caret-position="677">
+          <caret line="121" column="25" selection-start-line="121" selection-start-column="25" selection-end-line="121" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="28" column="48" lean-forward="true" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
