@@ -10,7 +10,7 @@ import timeit
 sys.path.insert(0,'../SimpleTracker')
 from KalmanFilter import KalmanFilter
 from copy import copy
-from BaseFunctions2 import TimePropagate, TimePropagate_, draw_error_ellipse2d
+from BaseFunctions2 import TimePropagate, TimePropagate_, draw_error_ellipse2d, createImageDirectory
 import hdf5storage
 from copy import deepcopy as deepcopy
 import os
@@ -49,6 +49,25 @@ def diff_max(track1, track2):
         if res < tmp:
             res = tmp
     return res
+    
+    
+####
+
+attack = False 
+
+input_image_idx = 10
+ROI_centre = [4500, 5000]
+
+wasabi_directory = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/"
+writeimagefolder = "/Users/xiaowei/Dropbox/temporary_buffer/code/savefig/"
+
+exampleString = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
+createImageDirectory(writeimagefolder+exampleString)
+
+if attack: 
+    createImageDirectory(writeimagefolder+exampleString+"attacked")
+else: 
+    createImageDirectory(writeimagefolder+exampleString+"original")
 
 
 ## to run the WAMI tracker
@@ -58,7 +77,6 @@ ref_track = None
 input_image_idx = 10
 
 wasabi_directory = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/"
-writeimagefolder = "/Users/xiaowei/Dropbox/temporary_buffer/code/savefig/"
 
 ROI_centre = [4500, 5000]
 ROI_window = 1000
@@ -108,7 +126,7 @@ for i in range(20):
 
     dr = DetectionRefinement(input_image, bgt.getCompensatedImages(), BackgroundSubtractionCentres,
                              BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression,
-                             aveImg_regression)
+                             aveImg_regression,attack)
     # dr.refinementID=refinementID
     refinedDetections, refinedProperties = dr.doMovingVehicleRefinement()
     regressedDetections = dr.doMovingVehiclePositionRegression()

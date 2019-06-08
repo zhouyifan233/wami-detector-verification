@@ -12,7 +12,7 @@ from mcdc import mcdc
 
 class DetectionRefinement:
 
-    def __init__(self, input_image, compensatedImages, BackgroundSubtractionDetections, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression):
+    def __init__(self, input_image, compensatedImages, BackgroundSubtractionDetections, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression, attack):
         self.num_of_template = len(compensatedImages)
         self.img_t = input_image
         self.img_tminus1 = compensatedImages[self.num_of_template-1]
@@ -28,6 +28,7 @@ class DetectionRefinement:
         self.refinedDetectionsID = []
         self.regressedDetectionID = []
         self.refinementID=None
+        self.attack = attack
 
     def doMovingVehicleRefinement(self):
         img_shape = self.img_t.shape
@@ -54,7 +55,7 @@ class DetectionRefinement:
         ## TODO: MCDC testing here
         #if np.random.uniform(0,1)>0.:
         print ('**** refinementID', self.refinementID)
-        if not (self.refinementID is None):
+        if self.attack and not (self.refinementID is None):
         ##  pass # to call mcdc
         ##  print (type(X))
         ##  print (self.refinementID)
