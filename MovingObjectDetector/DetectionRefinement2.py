@@ -54,12 +54,12 @@ class DetectionRefinement:
         ## TODO: MCDC testing here
         #if np.random.uniform(0,1)>0.:
         print ('**** refinementID', self.refinementID)
-        if not (self.refinementID is None):
+        if not self.refinementID is None:
         ##  pass # to call mcdc
         ##  print (type(X))
         ##  print (self.refinementID)
         ##  print (X.shape)
-          res, X[self.refinementID] = mcdc(X[self.refinementID], self.model_binary, self.aveImg_binary,  mcdc_cond_ratio=0.99)
+          res, X[self.refinementID]=mcdc(X[self.refinementID], self.model_binary, self.aveImg_binary,  mcdc_cond_ratio=0.99)
         ##  X[self.refinementID]=new_x
         ##  print ('res is ', res)
         ##  #if res: 
@@ -81,7 +81,7 @@ class DetectionRefinement:
         ##    #print (new_x)
         ##  #raise Exception ('...')
         ##  X[self.refinementID]=125.5
-        predictResults = self.model_binary.predict(X, batch_size=1000, verbose=0)
+        predictResults = self.model_binary.predict(X, batch_size=5000, verbose=0)
 
         mask2 = np.zeros(len(predictResults), dtype=np.bool)
         for idx in range(len(predictResults)):
