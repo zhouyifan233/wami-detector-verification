@@ -1,10 +1,10 @@
-# Verification and Validation of WAMI moving vehicle detector
+## Verification and validation of WAMI moving vehicle detector
 
-## Dependencies: 
+### Dependencies: 
 
 1. DeepConcolic
 
-## To start the tool
+### To start the tool
 
                   python main.py 
                   
