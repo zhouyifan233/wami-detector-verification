@@ -21,6 +21,8 @@ def main():
                       help="ROI_centre")
     parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
                       help="ROI_centre")
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
+                      help="ROI_centre")
                       
     args=parser.parse_args()
 
@@ -32,15 +34,15 @@ def main():
     ROI_centre = [int(ln), int(rn)]
 
     model_folder = "Models/"
-    imagefolder = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/"
-    writeimagefolder0 = args.writeimagefolder0 #"/Users/xiaowei/Dropbox/temporary_buffer/code/savefig/"
+    imagefolder = args.imagefolder
+    writeimagefolder0 = args.writeimagefolder0
 
-    exampleString = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
-    createImageDirectory(writeimagefolder0+exampleString)
+    instance = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
+    createImageDirectory(writeimagefolder0+instance)
     if attack: 
-        writeimagefolder = writeimagefolder0+exampleString+"attacked/"
+        writeimagefolder = writeimagefolder0+instance+"attacked/"
     else: 
-        writeimagefolder = writeimagefolder0+exampleString+"original/"
+        writeimagefolder = writeimagefolder0+instance+"original/"
     createImageDirectory(writeimagefolder)
     
     run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder) 
