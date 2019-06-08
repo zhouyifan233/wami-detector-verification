@@ -58,20 +58,20 @@ ref_track = None
 input_image_idx = 10
 
 wasabi_directory = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/"
+writeimagefolder = "/Users/xiaowei/Dropbox/temporary_buffer/code/savefig/"
 
 ROI_centre = [4500, 5000]
 ROI_window = 1000
 image_idx_offset = 0
 num_of_template = 3
 imagefolder = wasabi_directory+"WAPAFB_images_train/training/"
-writeimagefolder = "/Users/xiaowei/Dropbox/temporary_buffer/savefig/"
 # if not os.path.exists(d_out):
 #  os.makedirs(d_out)
-model_folder = wasabi_directory+"Models/"
+model_folder = "../Models/"
 model_binary, aveImg_binary, model_regression, aveImg_regression = basefunctions.ReadModels(model_folder)
 
 # load transformation matrices
-matlabfile = hdf5storage.loadmat(wasabi_directory+'Models/Data/TransformationMatrices_train.mat')
+matlabfile = hdf5storage.loadmat(model_folder+'Data/TransformationMatrices_train.mat')
 TransformationMatrices = matlabfile.get("TransMatrix")
 
 # Load background
