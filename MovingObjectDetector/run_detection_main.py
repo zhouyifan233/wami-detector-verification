@@ -88,10 +88,10 @@ bgt = BackgroundModel(num_of_template=num_of_template, templates=images)
 kf = KalmanFilter(np.array([[722], [1487], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
 # kf1 = KalmanFilter(np.array([[2989], [1961], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
 detections_all = []
-refinementID = None
 detected_track = []
 for i in range(20):
     starttime = timeit.default_timer()
+    refinementID = None
     # Read input image
     frame_idx = input_image_idx + image_idx_offset + i
     ReadImage = cv2.imread(imagefolder + "frame%06d.png" % frame_idx, cv2.IMREAD_GRAYSCALE)
