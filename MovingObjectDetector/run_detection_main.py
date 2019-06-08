@@ -52,16 +52,14 @@ def diff_max(track1, track2):
 ####
 
 
-def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder): 
+def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder,ROI_window,num_of_template): 
 
     ## to run the WAMI tracker
     ## d_out  : output directory
     ## frames : a vector of frames to attack
     ref_track = None
 
-    ROI_window = 1000
     image_idx_offset = 0
-    num_of_template = 3
     # if not os.path.exists(d_out):
     #  os.makedirs(d_out)
     model_binary, aveImg_binary, model_regression, aveImg_regression = basefunctions.ReadModels(model_folder)

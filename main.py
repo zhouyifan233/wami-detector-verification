@@ -23,11 +23,18 @@ def main():
                       help="ROI_centre")
     parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="../../../wasabi-detection-python-new/WAPAFB_images_train/training/",
                       help="ROI_centre")
+    parser.add_argument(
+      '--ROI_window', dest='ROI_window', default='1000', help='the windows size of ROI')
+    parser.add_argument(
+      '--num_of_template', dest='num_of_template', default='3', help='num of templates for [...]')
+
                       
     args=parser.parse_args()
 
     attack = True if args.attack == "True" else False 
     input_image_idx = int(''.join(x for x in args.input_image_idx if x.isdigit()))
+    ROI_window = int(''.join(x for x in args.ROI_window if x.isdigit()))
+    num_of_template = int(''.join(x for x in args.num_of_template if x.isdigit()))
     l,r = args.ROI_centre.split(",")
     ln = ''.join(x for x in l if x.isdigit())
     rn = ''.join(x for x in r if x.isdigit())
@@ -36,7 +43,6 @@ def main():
     model_folder = "Models/"
     imagefolder = args.imagefolder
     writeimagefolder0 = args.writeimagefolder0
-
     instance = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
     createImageDirectory(writeimagefolder0+instance)
     if attack: 
@@ -45,7 +51,7 @@ def main():
         writeimagefolder = writeimagefolder0+instance+"original/"
     createImageDirectory(writeimagefolder)
     
-    run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder) 
+    run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder,ROI_window,num_of_template) 
 
 
 if __name__=="__main__":
