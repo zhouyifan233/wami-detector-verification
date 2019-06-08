@@ -2,7 +2,15 @@ The tool integrates WAMI moving vehicle detector and DeepConcolic.
 
 To start the tool
 ==============
-python main.py [--attack True/False] [--wasabi-image-folder path/to/wasabi/image/folder] [--input_image_idx n] [--ROI_centre (x,y)] [-- output-image-folder path/to/output/folder] 
+python main.py 
+
+with a few optional paramters: 
+
+[--attack True/False] with default False
+[--wasabi-image-folder path/to/wasabi/image/folder] with default "~/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/"
+[--input_image_idx n] with default "10"
+[--ROI_centre (x,y)] with default "4500, 5000"
+[-- output-image-folder path/to/output/folder] with default "../savefig/"
 
 
 To run the tool. There needs to be come pre-condigurations.
