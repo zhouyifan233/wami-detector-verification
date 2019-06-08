@@ -52,8 +52,6 @@ def diff_max(track1, track2):
 ####
 
 
-
-
 def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder): 
 
     ## to run the WAMI tracker
@@ -198,65 +196,66 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
             trackx = kf.mu_t[0, 0]
             tracky = kf.mu_t[1, 0]
             # if kf1_flag:
-        #  trackx = kf1.mu_t[0,0]
-        #  tracky = kf1.mu_t[1,0]
-        detections_all.append(np.array([trackx, tracky]).reshape(2, 1))
+            #  trackx = kf1.mu_t[0,0]
+            #  tracky = kf1.mu_t[1,0]
+            detections_all.append(np.array([trackx, tracky]).reshape(2, 1))
 
-    # update background
-    bgt.updateTemplate(input_image)
+        # update background
+        bgt.updateTemplate(input_image)
 
-    # plt.figure()
-    minx = np.int32(trackx - 300)
-    miny = np.int32(tracky - 300)
-    maxx = np.int32(trackx + 301)
-    maxy = np.int32(tracky + 301)
-    roi_image = np.repeat(np.expand_dims(input_image[miny:maxy, minx:maxx], -1), 3, axis=2)
-    cv2.circle(roi_image, (301, 301), 10, (255, 0, 0), 1)
-    validRegressedDetections = np.int32(copy(regressedDetections))
-    validRegressedDetections[:, 0] = validRegressedDetections[:, 0] - minx
-    validRegressedDetections[:, 1] = validRegressedDetections[:, 1] - miny
-    for thisDetection in validRegressedDetections:
-        if thisDetection[0] > 0 and thisDetection[0] < 600 and thisDetection[1] > 0 and thisDetection[1] < 600:
-            cv2.circle(roi_image, (thisDetection[0], thisDetection[1]), 3, (100, 100, 0), -1)
+        # plt.figure()
+        minx = np.int32(trackx - 300)
+        miny = np.int32(tracky - 300)
+        maxx = np.int32(trackx + 301)
+        maxy = np.int32(tracky + 301)
+        roi_image = np.repeat(np.expand_dims(input_image[miny:maxy, minx:maxx], -1), 3, axis=2)
+        cv2.circle(roi_image, (301, 301), 10, (255, 0, 0), 1)
+        validRegressedDetections = np.int32(copy(regressedDetections))
+        validRegressedDetections[:, 0] = validRegressedDetections[:, 0] - minx
+        validRegressedDetections[:, 1] = validRegressedDetections[:, 1] - miny
+        for thisDetection in validRegressedDetections:
+            if thisDetection[0] > 0 and thisDetection[0] < 600 and thisDetection[1] > 0 and thisDetection[1] < 600:
+                cv2.circle(roi_image, (thisDetection[0], thisDetection[1]), 3, (100, 100, 0), -1)
 
-    num_of_detections_all = len(detections_all)
+        num_of_detections_all = len(detections_all)
 
-    point1s = [None]
-    point2s = [None]
+        point1s = [None]
+        point2s = [None]
 
-    print('###')
-    for idx in range(1, num_of_detections_all):
-        point1x = np.int32(detections_all[idx - 1][0, 0]) - minx
-        point1y = np.int32(detections_all[idx - 1][1, 0]) - miny
-        point2x = np.int32(detections_all[idx][0, 0]) - minx
-        point2y = np.int32(detections_all[idx][1, 0]) - miny
-        point1s.append((point1x, point1y))
-        point2s.append((point2x, point2y))
-        if i > 0 and not (ref_track is None):
-            print(idx, ref_track[i].points[0][idx], ref_track[i].points[1][idx])
-            cv2.line(roi_image, ref_track[i].points[0][idx], ref_track[i].points[1][idx], (0, 255, 0), 1)
-        if ref_track is None:
-            cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 255, 0), 1)
-        else:
-            cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 0, 255), 1)
-    print('###')
+        print('###')
+        for idx in range(1, num_of_detections_all):
+            point1x = np.int32(detections_all[idx - 1][0, 0]) - minx
+            point1y = np.int32(detections_all[idx - 1][1, 0]) - miny
+            point2x = np.int32(detections_all[idx][0, 0]) - minx
+            point2y = np.int32(detections_all[idx][1, 0]) - miny
+            point1s.append((point1x, point1y))
+            point2s.append((point2x, point2y))
+            if i > 0 and not (ref_track is None):
+                print(idx, ref_track[i].points[0][idx], ref_track[i].points[1][idx])
+                cv2.line(roi_image, ref_track[i].points[0][idx], ref_track[i].points[1][idx], (0, 255, 0), 1)
+            if ref_track is None:
+                cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 255, 0), 1)
+            else:
+                cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 0, 255), 1)
+        print('###')
 
-    detected_track.append(location(kf.mu_t[0] - minx, kf.mu_t[1] - miny, kf.sigma_t, [point1s, point2s]))
+        detected_track.append(location(kf.mu_t[0] - minx, kf.mu_t[1] - miny, kf.sigma_t, [point1s, point2s]))
 
-    # draw_error_ellipse2d(roi_image, (kf1.mu_t[0]-minx, kf1.mu_t[1]-miny), kf1.sigma_t)
-    # cv2.circle(input_image, (np.int32(trackx), np.int32(tracky)), 15, (255, 0, 0), 3)
-    # cv2.imwrite(writeimagefolder + "%05d.png"%i, roi_image)
-    cv2.imwrite(writeimagefolder + "/%05d.png" % i, roi_image)
-    """
-    plt.figure()
-    plt.imshow(np.repeat(np.expand_dims(input_image, -1), 3, axis=2))
-    #plt.plot(BackgroundSubtractionCentres[:,0], BackgroundSubtractionCentres[:,1], 'g.')
-    #plt.plot(refinedDetections[:,0], refinedDetections[:,1], 'y.')
-    plt.plot(np.int32(regressedDetections[:,0]), np.int32(regressedDetections[:,1]), 'r.', markersize=3)
-    plt.plot(np.int32(trackx), np.int32(tracky), 'yo', markersize=5)
-    plt.show()
-    """
-    endtime = timeit.default_timer()
-    print("Processing Time (Total): " + str(endtime - starttime) + " s... ")
+        # draw_error_ellipse2d(roi_image, (kf1.mu_t[0]-minx, kf1.mu_t[1]-miny), kf1.sigma_t)
+        # cv2.circle(input_image, (np.int32(trackx), np.int32(tracky)), 15, (255, 0, 0), 3)
+        # cv2.imwrite(writeimagefolder + "%05d.png"%i, roi_image)
+        #print("writing into %s"%(writeimagefolder + "%05d.png" % i))
+        cv2.imwrite(writeimagefolder + "%05d.png" % i, roi_image)
+        """
+        plt.figure()
+        plt.imshow(np.repeat(np.expand_dims(input_image, -1), 3, axis=2))
+        #plt.plot(BackgroundSubtractionCentres[:,0], BackgroundSubtractionCentres[:,1], 'g.')
+        #plt.plot(refinedDetections[:,0], refinedDetections[:,1], 'y.')
+        plt.plot(np.int32(regressedDetections[:,0]), np.int32(regressedDetections[:,1]), 'r.', markersize=3)
+        plt.plot(np.int32(trackx), np.int32(tracky), 'yo', markersize=5)
+        plt.show()
+        """
+        endtime = timeit.default_timer()
+        print("Processing Time (Total): " + str(endtime - starttime) + " s... ")
 
 

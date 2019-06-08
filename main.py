@@ -23,7 +23,6 @@ def main():
 
     exampleString = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
     createImageDirectory(writeimagefolder0+exampleString)
-
     if attack: 
         writeimagefolder = writeimagefolder0+exampleString+"attacked/"
     else: 
