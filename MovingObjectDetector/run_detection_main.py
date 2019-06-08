@@ -58,6 +58,7 @@ attack = False
 input_image_idx = 10
 ROI_centre = [4500, 5000]
 
+imagefolder = wasabi_directory+"WAPAFB_images_train/training/"
 wasabi_directory = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/"
 writeimagefolder0 = "/Users/xiaowei/Dropbox/temporary_buffer/code/savefig/"
 
@@ -76,15 +77,10 @@ createImageDirectory(writeimagefolder)
 ## d_out  : output directory
 ## frames : a vector of frames to attack
 ref_track = None
-input_image_idx = 10
 
-wasabi_directory = "/Users/xiaowei/Dropbox/wasabi-detection-python-new/"
-
-ROI_centre = [4500, 5000]
 ROI_window = 1000
 image_idx_offset = 0
 num_of_template = 3
-imagefolder = wasabi_directory+"WAPAFB_images_train/training/"
 # if not os.path.exists(d_out):
 #  os.makedirs(d_out)
 model_folder = "../Models/"
