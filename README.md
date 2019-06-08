@@ -1,4 +1,4 @@
-# The tool integrates WAMI moving vehicle detector and DeepConcolic.
+# Verification and Validation of WAMI moving vehicle detector
 
 ## Dependencies: 
 
