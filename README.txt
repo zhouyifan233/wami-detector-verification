@@ -2,7 +2,7 @@ The tool integrates WAMI moving vehicle detector and DeepConcolic.
 
 To start the tool
 ==============
-python main.py
+python main.py [--attack True/False] [--wasabi-image-folder path/to/wasabi/image/folder] [--input_image_idx n] [--ROI_centre (x,y)] [-- output-image-folder path/to/output/folder] 
 
 
 To run the tool. There needs to be come pre-condigurations.
