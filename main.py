@@ -17,11 +17,11 @@ def main():
       '--image-index', dest='input_image_idx', default='10', help='the index of the input image in WASABI dataset')
     parser.add_argument("--attack", dest="attack", default="False",
                       help="attack or not")
-    parser.add_argument("--ROI_centre", dest="ROI_centre", default="[4700, 5000]",
+    parser.add_argument("--ROI_centre", dest="ROI_centre", default="4500, 5000",
                       help="ROI_centre")
     parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
                       help="ROI_centre")
-    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="~/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
                       help="ROI_centre")
                       
     args=parser.parse_args()
