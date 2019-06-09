@@ -2,17 +2,7 @@
 from datetime import datetime
 import os
 
-import keras
-from keras.models import *
-from keras.datasets import cifar10
-from keras.datasets import mnist
-from keras.applications.vgg16 import VGG16
-from keras.preprocessing.image import load_img
-from keras.layers import *
-from keras import *
-from DeepConcolic.utils import *
-from DeepConcolic.nc_lp import *
-from DeepConcolic.lp_encoding import *
+from DeepConcolic.src.lp_encoding import *
 
 
 def nc_setup(test_object, outs):

@@ -1,15 +1,12 @@
 ## An API to call MCDC for DNNs externally
-import sys
-import numpy as np
-from DeepConcolic.utils import *
-from DeepConcolic.nc_setup import *
-from DeepConcolic.ssc import *
-import matplotlib.pyplot as plt
+from DeepConcolic.src.nc_setup import *
+from DeepConcolic.src.ssc import *
+
 try:
   from art.attacks.fast_gradient import FastGradientMethod
   from art.classifiers import KerasClassifier
 except:
-  from DeepConcolic.attacks import *
+  from DeepConcolic.src.attacks import *
 
 
 class adv_objectt:

@@ -1,26 +1,12 @@
-import argparse
-import sys
-from datetime import datetime
-
-import keras
-from keras.models import *
-from keras.datasets import cifar10
-from keras.applications.vgg16 import VGG16
-from keras.layers import *
-from keras import *
 import tensorflow as tf
-import numpy as np
 
-import copy
-
-
-from DeepConcolic.utils import *
+from DeepConcolic.src.utils import *
 
 try:
   from art.attacks.fast_gradient import FastGradientMethod
   from art.classifiers import KerasClassifier
 except:
-  from DeepConcolic.attacks import *
+  from DeepConcolic.src.attacks import *
 
 RP_SIZE=50 ## the top 50 pairs
 NNUM=1000000000

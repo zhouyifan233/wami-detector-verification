@@ -1,12 +1,9 @@
 try:
   import cplex
 except:
-  from DeepConcolic.solver import *
+  from DeepConcolic.src.solver import *
 
-import sys
-import numpy as np
-
-from DeepConcolic.utils import *
+from DeepConcolic.src.utils import *
 
 import copy
 
