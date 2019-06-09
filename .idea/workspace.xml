@@ -2,20 +2,111 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea230193-7793-4b86-b92a-3cf8f1746521" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DrawResults/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/BaseFunctions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/BaseFunctions2.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/BaseFunctions2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimpleTracker/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainNetwork/BinaryClassification/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainNetwork/Regression/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainNetwork/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/.BaseFunctions2.py.swp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/.run_detection_main.py.swp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00006.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00007.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00008.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00009.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00010.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00011.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00012.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00013.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/00014.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i3/track_res.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00006.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00007.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00008.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00009.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00010.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00011.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00012.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00013.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/00014.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i4/track_res.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00006.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00007.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00008.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00009.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00010.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00011.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00012.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00013.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/00014.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/output-single-frame-attack-i5/track_res.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00006.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00007.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00008.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00009.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00010.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00011.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00012.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00013.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/00014.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i3/track_res.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i4/00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i4/00001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i4/00002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i4/00003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i4/00004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-dual-frame-attack-i4/track_res.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00006.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00007.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00008.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00009.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00010.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00011.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00012.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00013.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/00014.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/output-n-n-attack/track_res.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00006.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00007.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00008.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00009.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00010.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00011.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00012.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00013.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/00014.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/patch3/savefig/track_res.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,11 +136,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="255" selection-start-line="255" selection-end-line="255" />
+            <state relative-caret-position="320">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -192,7 +295,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_detection_batch">
+  <component name="RunManager" selected="Python.main">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="wasabi-detection-python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,6 +313,28 @@
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="wasabi-detection-python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="DISPLAY" value="true" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -254,29 +379,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="C:\Users\yifan\Google Drive\PythonSync\wami-detector-verification\MovingObjectDetector\run_detection_batch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="run_detection_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="wasabi-detection-python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DISPLAY" value="true" />
-      </envs>
-      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MovingObjectDetector" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MovingObjectDetector/run_detection_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -334,16 +436,16 @@
     <list>
       <item itemvalue="Python.run_detection_batch" />
       <item itemvalue="Python.run_detection_main" />
-      <item itemvalue="Python.run_detection_test" />
       <item itemvalue="Python.run_test_network" />
       <item itemvalue="Python.run_train_network" />
+      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.run_detection_batch" />
         <item itemvalue="Python.run_detection_main" />
         <item itemvalue="Python.run_detection_main" />
-        <item itemvalue="Python.run_detection_batch" />
         <item itemvalue="Python.run_detection_batch" />
       </list>
     </recent_temporary>
@@ -402,7 +504,7 @@
       <workItem from="1559939285454" duration="542000" />
       <workItem from="1559939863617" duration="2406000" />
       <workItem from="1560012282152" duration="3135000" />
-      <workItem from="1560101960513" duration="246000" />
+      <workItem from="1560101960513" duration="584000" />
     </task>
     <task id="LOCAL-00001" summary="add low memory version">
       <created>1559941383988</created>
@@ -415,7 +517,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204341000" />
+    <option name="totallyTimeSpent" value="204679000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -428,9 +530,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1865" height="1218" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5602504" visible="true" weight="0.18871057" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5602504" visible="true" weight="0.18871057" />
       <window_info id="Structure" order="1" sideWeight="0.4397496" side_tool="true" weight="0.21333334" />
       <window_info id="Favorites" order="2" sideWeight="0.41627544" side_tool="true" weight="0.21147357" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -445,7 +546,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005624" side_tool="true" weight="0.25299892" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32637364" />
-      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49943757" visible="true" weight="0.33458647" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" sideWeight="0.49943757" visible="true" weight="0.4201128" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -711,8 +812,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="255" selection-start-line="255" selection-end-line="255" />
+        <state relative-caret-position="320">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
