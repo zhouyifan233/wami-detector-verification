@@ -25,20 +25,19 @@ def main():
     parser=argparse.ArgumentParser(description='Verification and Validation of WAMI Tracking' )
     parser.add_argument(
       '--image-index', dest='input_image_idx', default='10', help='the index of the input image in WASABI dataset')
-    parser.add_argument("--attack", dest="attack", default="False",
+    parser.add_argument("--attack", dest="attack", default="True",
                       help="attack or not")
     parser.add_argument("--ROI_centre", dest="ROI_centre", default="4500, 5000",
                       help="ROI_centre")
     parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
                       help="ROI_centre")
-    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="../../../wasabi-detection-python-new/WAPAFB_images_train/training/",
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="C:/WPAFB-images/training/",
                       help="ROI_centre")
     parser.add_argument(
       '--ROI_window', dest='ROI_window', default='1000', help='the windows size of ROI')
     parser.add_argument(
       '--num_of_template', dest='num_of_template', default='3', help='num of templates for [...]')
 
-                      
     args=parser.parse_args()
 
     attack = True if args.attack == "True" else False 
