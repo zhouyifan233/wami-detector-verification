@@ -52,20 +52,20 @@ def diff_max(track1, track2):
 ## frames : a vector of frames to attack
 def run(d_out='savefig', frames_to_attack=[], ref_track=None):
   input_image_idx = 10
-  
-  ROI_centre = [4000, 5000]
-  ROI_window = 2000
+
+  ROI_centre = [4500, 5000]
+  ROI_window = 1000
   image_idx_offset = 0
-  num_of_template = 4
+  num_of_template = 3
   imagefolder = "C:/WPAFB-images/training/"
-  writeimagefolder = "./savefig/"
+  writeimagefolder = "C:/Workspace-python/savefig/"
   #if not os.path.exists(d_out):
   #  os.makedirs(d_out)
-  model_folder = "C:/Users/yifan/Google Drive/PythonSync/wasabi-detection-python-verification/Models/"
+  model_folder = "../Models/"
   model_binary, aveImg_binary, model_regression, aveImg_regression = basefunctions.ReadModels(model_folder)
   
   # load transformation matrices
-  matlabfile = hdf5storage.loadmat('C:/Users/yifan/Google Drive/PythonSync/wasabi-detection-python-verification/Models/Data/TransformationMatrices_train.mat')
+  matlabfile = hdf5storage.loadmat('../Models/Data/TransformationMatrices_train.mat')
   TransformationMatrices = matlabfile.get("TransMatrix")
   
   # Load background
@@ -80,12 +80,12 @@ def run(d_out='savefig', frames_to_attack=[], ref_track=None):
   bgt = BackgroundModel(num_of_template=num_of_template, templates=images)
   
   # initialise Kalman filter
-  kf = KalmanFilter(np.array([[2989], [1961], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
+  kf = KalmanFilter(np.array([[722], [1487], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
   #kf1 = KalmanFilter(np.array([[2989], [1961], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
   detections_all = []
   refinementID=None
   detected_track=[]
-  for i in range(15):
+  for i in range(20):
       starttime = timeit.default_timer()
       # Read input image
       frame_idx = input_image_idx+image_idx_offset+i
@@ -96,7 +96,7 @@ def run(d_out='savefig', frames_to_attack=[], ref_track=None):
   
       Hs = bgt.doCalculateHomography(input_image)
       bgt.doMotionCompensation(Hs, input_image.shape)
-      BackgroundSubtractionCentres, BackgroundSubtractionProperties = bgt.doBackgroundSubtraction(input_image, thres=12)
+      BackgroundSubtractionCentres, BackgroundSubtractionProperties = bgt.doBackgroundSubtraction(input_image, thres=6)
   
       dr = DetectionRefinement(input_image, bgt.getCompensatedImages(), BackgroundSubtractionCentres, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression)
       #dr.refinementID=refinementID
@@ -271,8 +271,8 @@ def run(d_out='savefig', frames_to_attack=[], ref_track=None):
 
 if __name__ == '__main__':
   ref_track=run('savefig', [])
-  for i in range(3,6):
-    run('C:/Users/yifan/Google Drive/PythonSync/wasabi-detection-python-verification/experiments/output-single-frame-attack-i{0}'.format(i), [i], ref_track)
+  for i in range(3, 6):
+    run('C:/Workspace-python/savefig/output-single-frame-attack-i{0}'.format(i), [i], ref_track)
   #for i in range(3,10):
   #  run('output-dual-frame-attack-i{0}'.format(i), [i,i+1], ref_track)
   #for i in range(4,10):

@@ -1,17 +1,18 @@
 import numpy as np
 import sys
-#sys.path.insert(0,'../TrainNetwork')
-import TrainNetwork.BaseFunctions as bf
+sys.path.insert(0,'../TrainNetwork')
+import BaseFunctions as bf
 from sklearn.neighbors import NearestNeighbors
 import skimage.measure as measure
 import cv2
 import matplotlib.pyplot as plt
-#sys.path.insert(0, '/home/syc/Dropbox/workspace/liverpool/DeepConcolic/src')
-from DeepConcolic.mcdc import mcdc
+DeepConcolic_directory = "/Users/xiaowei/Dropbox/temporary_buffer/code/DeepConcolic/"
+sys.path.insert(0, DeepConcolic_directory+'src')
+from mcdc import mcdc
 
 class DetectionRefinement:
 
-    def __init__(self, input_image, compensatedImages, BackgroundSubtractionDetections, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression):
+    def __init__(self, input_image, compensatedImages, BackgroundSubtractionDetections, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression, attack):
         self.num_of_template = len(compensatedImages)
         self.img_t = input_image
         self.img_tminus1 = compensatedImages[self.num_of_template-1]
@@ -27,6 +28,7 @@ class DetectionRefinement:
         self.refinedDetectionsID = []
         self.regressedDetectionID = []
         self.refinementID=None
+        self.attack = attack
 
     def doMovingVehicleRefinement(self):
         img_shape = self.img_t.shape
@@ -53,12 +55,13 @@ class DetectionRefinement:
         ## TODO: MCDC testing here
         #if np.random.uniform(0,1)>0.:
         print ('**** refinementID', self.refinementID)
-        if not self.refinementID is None:
+
+        if self.attack and not (self.refinementID is None):
         ##  pass # to call mcdc
         ##  print (type(X))
         ##  print (self.refinementID)
         ##  print (X.shape)
-          res, X[self.refinementID]=mcdc(X[self.refinementID], self.model_binary, self.aveImg_binary,  mcdc_cond_ratio=0.99)
+          res, X[self.refinementID] = mcdc(X[self.refinementID], self.model_binary, self.aveImg_binary,  mcdc_cond_ratio=0.99)
         ##  X[self.refinementID]=new_x
         ##  print ('res is ', res)
         ##  #if res: 
@@ -80,7 +83,7 @@ class DetectionRefinement:
         ##    #print (new_x)
         ##  #raise Exception ('...')
         ##  X[self.refinementID]=125.5
-        predictResults = self.model_binary.predict(X, batch_size=5000, verbose=0)
+        predictResults = self.model_binary.predict(X, batch_size=1000, verbose=0)
 
         mask2 = np.zeros(len(predictResults), dtype=np.bool)
         for idx in range(len(predictResults)):
