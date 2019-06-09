@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea230193-7793-4b86-b92a-3cf8f1746521" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/run_detection_batch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py" afterDir="false" />
-    </list>
+    <list default="true" id="ea230193-7793-4b86-b92a-3cf8f1746521" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="-560">
+              <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -50,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DeepConcolic/mcdc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="320">
+              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
               <folding>
                 <element signature="e#43#53#0" expanded="true" />
               </folding>
@@ -83,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-849">
-              <caret line="125" column="43" lean-forward="true" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
+            <state relative-caret-position="2320">
+              <caret line="125" column="43" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -156,6 +151,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,7 +168,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,6 +230,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DISPLAY" value="true" />
       </envs>
       <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
@@ -257,6 +253,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DISPLAY" value="true" />
       </envs>
       <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
@@ -344,11 +341,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.run_detection_batch" />
+      <item itemvalue="Python.run_detection_main" />
       <item itemvalue="Python.run_detection_test" />
       <item itemvalue="Python.run_test_network" />
       <item itemvalue="Python.run_train_network" />
-      <item itemvalue="Python.run_detection_batch" />
-      <item itemvalue="Python.run_detection_main" />
     </list>
     <recent_temporary>
       <list>
@@ -426,7 +423,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203946000" />
+    <option name="totallyTimeSpent" value="203969000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -440,7 +437,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1865" height="1218" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5602504" visible="true" weight="0.18206973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5602504" visible="true" weight="0.18428335" />
       <window_info id="Structure" order="1" sideWeight="0.4397496" side_tool="true" weight="0.21333334" />
       <window_info id="Favorites" order="2" sideWeight="0.41627544" side_tool="true" weight="0.21147357" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -690,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DeepConcolic/mcdc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="320">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding>
             <element signature="e#43#53#0" expanded="true" />
           </folding>
@@ -700,8 +697,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MovingObjectDetector/DetectionRefinement.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-849">
-          <caret line="125" column="43" lean-forward="true" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
+        <state relative-caret-position="2320">
+          <caret line="125" column="43" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -730,8 +727,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MovingObjectDetector/run_detection_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="-560">
+          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
