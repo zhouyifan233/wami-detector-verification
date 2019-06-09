@@ -2,7 +2,8 @@
 
 ### Dependencies: 
 
-1. DeepConcolic
+1. DeepConcolic (https://github.com/TrustAI/DeepConcolic)
+Folder "DeepConcolic/src/" is necessary.
 
 ### To start the tool
 
