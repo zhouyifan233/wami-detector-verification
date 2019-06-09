@@ -1,18 +1,15 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+import timeit
+import hdf5storage
+import math
+import TN_BaseFunctions as basefunctions
+from copy import copy
+from copy import deepcopy as deepcopy
 from BackgroundModel import BackgroundModel
 from DetectionRefinement import DetectionRefinement
-import sys
-import BaseFunctions as basefunctions
-import timeit
 from KalmanFilter import KalmanFilter
-from copy import copy
-from BaseFunctions2 import TimePropagate, TimePropagate_, draw_error_ellipse2d
-import hdf5storage
-from copy import deepcopy as deepcopy
-import os
-import math
+from MOD_BaseFunctions import TimePropagate, TimePropagate_, draw_error_ellipse2d
 
 
 class location:
@@ -58,8 +55,6 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
     ref_track = None
 
     image_idx_offset = 0
-    # if not os.path.exists(d_out):
-    #  os.makedirs(d_out)
     model_binary, aveImg_binary, model_regression, aveImg_regression = basefunctions.ReadModels(model_folder)
 
     # load transformation matrices
@@ -80,7 +75,6 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
 
     # initialise Kalman filter
     kf = KalmanFilter(np.array([[722], [1487], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
-    # kf1 = KalmanFilter(np.array([[2989], [1961], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
     detections_all = []
     detected_track = []
     for i in range(20):
@@ -112,15 +106,11 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
         if i > 0:
             kf.TimePropagate(Hs[num_of_template - 1])
             kf.predict()
-            """"""
+
             # the id in the regressed detections
             regressionID = kf.NearestNeighbourAssociator(regressedDetections)
             # the id in the refinement detections (input to the CNN)
             old_kfz = kf.z
-            # print("regressionID:   ")
-            # print(regressionID)
-            # print("regressedDetectionID:   ")
-            # print(dr.regressedDetectionID)
             if isinstance(regressionID, np.int64):
                 regression2refinedID = dr.regressedDetectionID[regressionID]
                 refinementID = dr.refinedDetectionsID[regression2refinedID]
@@ -129,20 +119,7 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
             else:
                 print("Data Association failed (No detection is assigned to this track)...")
             if isinstance(refinementID, np.int64) and (i > 5):
-                #######
                 #######  here to play 'attack': to call the dr again with refinementID
-                # frame_idx = input_image_idx+image_idx_offset+i
-                # ReadImage = cv2.imread(imagefolder + "frame%06d.png" % frame_idx, cv2.IMREAD_GRAYSCALE)
-                # input_image = ReadImage[ROI_centre[1]-ROI_window:ROI_centre[1]+ROI_window+1, ROI_centre[0]-ROI_window:ROI_centre[0]+ROI_window+1]
-                # ROI_centre = TimePropagate_(ROI_centre, TransformationMatrices[frame_idx-1][0])
-                # ROI_centre = [int(i) for i in ROI_centre]
-
-                # Hs = bgt.doCalculateHomography(input_image)
-                # bgt.doMotionCompensation(Hs, input_image.shape)
-                # BackgroundSubtractionCentres, BackgroundSubtractionProperties = bgt.doBackgroundSubtraction(input_image, thres=10)
-
-                # dr = DetectionRefinement(input_image, bgt.getCompensatedImages(), BackgroundSubtractionCentres, BackgroundSubtractionProperties, model_binary, aveImg_binary, model_regression, aveImg_regression)
-                #########
                 dr.refinementID = refinementID
                 # dr.refinementID=None
                 refinedDetections, refinedProperties = dr.doMovingVehicleRefinement()
@@ -172,18 +149,10 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
                     print('#### new refinementID', refinementID)
                 # kf1_flag=True
                 kf = deepcopy(kf1)
-                #######
-                #######
 
-            # if kf1_flag: kf=deepcopy(kf1)
-            """"""
             kf.update()
             trackx = kf.mu_t[0, 0]
             tracky = kf.mu_t[1, 0]
-            # if kf1_flag:
-            #  kf1.update()
-            #  trackx = kf1.mu_t[0,0]
-            #  tracky = kf1.mu_t[1,0]
             # propagate all detections
             detections_all = TimePropagate(detections_all, Hs[num_of_template - 1])
             detections_all.append(np.array([trackx, tracky]).reshape(2, 1))
@@ -239,7 +208,6 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
 
         # draw_error_ellipse2d(roi_image, (kf1.mu_t[0]-minx, kf1.mu_t[1]-miny), kf1.sigma_t)
         # cv2.circle(input_image, (np.int32(trackx), np.int32(tracky)), 15, (255, 0, 0), 3)
-        # cv2.imwrite(writeimagefolder + "%05d.png"%i, roi_image)
         #print("writing into %s"%(writeimagefolder + "%05d.png" % i))
         cv2.imwrite(writeimagefolder + "%05d.png" % i, roi_image)
         """

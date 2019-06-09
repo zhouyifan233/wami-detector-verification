@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 import hdf5storage
 import glob
-import TrainNetwork.BaseFunctions as bf
+import TrainNetwork.TN_BaseFunctions as bf
 import pickle
 import tensorflow.keras.backend as K
 

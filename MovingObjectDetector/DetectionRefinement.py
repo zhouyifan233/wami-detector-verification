@@ -1,14 +1,11 @@
 import numpy as np
 import sys
-sys.path.insert(0,'../TrainNetwork')
-import BaseFunctions as bf
+import TN_BaseFunctions as bf
 from sklearn.neighbors import NearestNeighbors
 import skimage.measure as measure
 import cv2
-import matplotlib.pyplot as plt
-DeepConcolic_directory = "/Users/xiaowei/Dropbox/temporary_buffer/code/DeepConcolic/"
-sys.path.insert(0, DeepConcolic_directory+'src')
 from mcdc import mcdc
+
 
 class DetectionRefinement:
 
@@ -53,8 +50,7 @@ class DetectionRefinement:
         detections = self.original_detections[mask1, ...]
         X, _ = bf.DataNormalisationZeroCentred(X, self.aveImg_binary)
         ## TODO: MCDC testing here
-        #if np.random.uniform(0,1)>0.:
-        print ('**** refinementID', self.refinementID)
+        print('**** refinementID', self.refinementID)
 
         if self.attack and not (self.refinementID is None):
         ##  pass # to call mcdc
@@ -144,25 +140,6 @@ class DetectionRefinement:
                         X, _ = bf.DataNormalisationZeroCentred(X, self.aveImg_regression)
                         RegressionResult = self.model_regression.predict(X, batch_size=1, verbose=0)
                         RegressionResult = cv2.resize(np.reshape(RegressionResult, (15, 15)), (45, 45))
-                        """
-                        if (MeanCentre[0] >4402) and (MeanCentre[0] <4426) and (MeanCentre[1] >2080) and (MeanCentre[1] <2104):
-                            print([miny, maxy, minx, maxx])
-                            plt.figure()
-                            plt.imshow(RegressionResult)
-                            plt.show()
-                            plt.figure()
-                            plt.imshow(self.img_t[miny:maxy, minx:maxx])
-                            plt.show()
-                            plt.figure()
-                            plt.imshow(self.img_tminus1[miny:maxy, minx:maxx])
-                            plt.show()
-                            plt.figure()
-                            plt.imshow(self.img_tminus2[miny:maxy, minx:maxx])
-                            plt.show()
-                            plt.figure()
-                            plt.imshow(self.img_tminus3[miny:maxy, minx:maxx])
-                            plt.show()
-                        """
                         MaxRegressionValue = np.max(RegressionResult)
                         tmpxy = np.where(RegressionResult == MaxRegressionValue)
                         tmpDetections = []

@@ -1,14 +1,10 @@
-import numpy as np
-import cv2
-import matplotlib.pyplot as plt
 import sys
 sys.path.append('MovingObjectDetector')
 sys.path.append('TrainNetwork')
 sys.path.append('SimpleTracker')
+sys.path.append('DeepConcolic')
 import argparse
-import os
-import random
-from BaseFunctions2 import createImageDirectory
+from MOD_BaseFunctions import createImageDirectory
 from run_detection_main import run_detection_main
 
 def running(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder0,ROI_window,num_of_template): 
@@ -34,7 +30,7 @@ def main():
                       help="ROI_centre")
     parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
                       help="ROI_centre")
-    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="../../../wasabi-detection-python-new/WAPAFB_images_train/training/",
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="C:/WPAFB-images/training/",
                       help="ROI_centre")
     parser.add_argument(
       '--ROI_window', dest='ROI_window', default='1000', help='the windows size of ROI')
