@@ -7,8 +7,21 @@ sys.path.append('TrainNetwork')
 sys.path.append('SimpleTracker')
 import argparse
 import os
+import random
 from BaseFunctions2 import createImageDirectory
 from run_detection_main import run_detection_main
+
+def running(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder0,ROI_window,num_of_template): 
+
+    instance = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
+    createImageDirectory(writeimagefolder0+instance)
+    if attack: 
+        writeimagefolder = writeimagefolder0+instance+"attacked/"
+    else: 
+        writeimagefolder = writeimagefolder0+instance+"original/"
+    createImageDirectory(writeimagefolder)
+    run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder,ROI_window,num_of_template) 
+
 
 def main():
 
@@ -42,16 +55,16 @@ def main():
 
     model_folder = "Models/"
     imagefolder = args.imagefolder
-    writeimagefolder0 = args.writeimagefolder0
-    instance = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
-    createImageDirectory(writeimagefolder0+instance)
-    if attack: 
-        writeimagefolder = writeimagefolder0+instance+"attacked/"
-    else: 
-        writeimagefolder = writeimagefolder0+instance+"original/"
-    createImageDirectory(writeimagefolder)
+
+    #running(attack,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template) 
     
-    run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder,ROI_window,num_of_template) 
+    for t in range(1000): 
+        x = random.randint(3000,6000)
+        y = random.randint(3000,6000)
+        ROI_centre = [x,y]
+        print("**************** start working on (%s,%s)..."%(str(x),str(y)))
+        running(False,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template) 
+        running(True,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template) 
 
 
 if __name__=="__main__":
