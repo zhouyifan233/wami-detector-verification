@@ -1,5 +1,6 @@
 import numpy as np
 import skimage.draw as draw
+import os
 
 def TimePropagate(detections, transformation_matrix):
     new_detections = []
@@ -50,3 +51,15 @@ def draw_error_ellipse2d(image, mu, sigma, color="k"):
         else: image[valid_points_r, valid_points_c, 1] = 0
     return image
 
+def showImage(image): 
+    import matplotlib.pyplot as plt
+    imgplot = plt.imshow(image)
+    plt.show()
+    
+def createImageDirectory(file_path):
+
+    directory = os.path.dirname(file_path)
+    try:
+        os.stat(directory)
+    except:
+        os.mkdir(directory)  
