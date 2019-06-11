@@ -4,7 +4,7 @@ import TN_BaseFunctions as bf
 from sklearn.neighbors import NearestNeighbors
 import skimage.measure as measure
 import cv2
-from mcdc import mcdc
+from mcdc import mcdc, mcdc_regression_linf
 
 
 class DetectionRefinement:
@@ -52,11 +52,8 @@ class DetectionRefinement:
         ## TODO: MCDC testing here
         print('**** refinementID', self.refinementID)
 
-        if self.attack and not (self.refinementID is None):
+        if ("classification" in self.attack) and not (self.refinementID is None):
         ##  pass # to call mcdc
-        ##  print (type(X))
-        ##  print (self.refinementID)
-        ##  print (X.shape)
           res, X[self.refinementID] = mcdc(X[self.refinementID], self.model_binary, self.aveImg_binary,  mcdc_cond_ratio=0.99)
         ##  X[self.refinementID]=new_x
         ##  print ('res is ', res)
@@ -138,6 +135,8 @@ class DetectionRefinement:
                         X = np.concatenate((data_t, data_tminus1, data_tminus2, data_tminus3), axis=0)
                         X = np.expand_dims(X, axis=0)
                         X, _ = bf.DataNormalisationZeroCentred(X, self.aveImg_regression)
+                        if ("regression" in self.attack) and not (self.refinementID is None):
+                            res, X[0] = mcdc_regression_linf(X[0], self.model_regression, self.aveImg_regression, regression_threshold = 0.1, mcdc_cond_ratio=0.99)
                         RegressionResult = self.model_regression.predict(X, batch_size=1, verbose=0)
                         RegressionResult = cv2.resize(np.reshape(RegressionResult, (15, 15)), (45, 45))
                         MaxRegressionValue = np.max(RegressionResult)
