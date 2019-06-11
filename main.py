@@ -26,7 +26,7 @@ def main():
     parser=argparse.ArgumentParser(description='Verification and Validation of WAMI Tracking' )
     parser.add_argument(
       '--image-index', dest='input_image_idx', default='10', help='the index of the input image in WASABI dataset')
-    parser.add_argument("--attack", dest="attack", default="True",
+    parser.add_argument("--attack", dest="attack", default="classification",
                       help="attack or not")
     parser.add_argument("--ROI_centre", dest="ROI_centre", default="4500, 5000",
                       help="ROI_centre")
@@ -41,7 +41,7 @@ def main():
 
     args=parser.parse_args()
 
-    attack = True if args.attack == "True" else False 
+    attack = args.attack  
     input_image_idx = int(''.join(x for x in args.input_image_idx if x.isdigit()))
     ROI_window = int(''.join(x for x in args.ROI_window if x.isdigit()))
     num_of_template = int(''.join(x for x in args.num_of_template if x.isdigit()))
