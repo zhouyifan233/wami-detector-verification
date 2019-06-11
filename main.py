@@ -1,9 +1,10 @@
 import sys
+import random
 sys.path.append('MovingObjectDetector')
 sys.path.append('TrainNetwork')
 sys.path.append('SimpleTracker')
 # Specify DeepConcolic src file here:
-sys.path.append('DeepConcolic/src')
+sys.path.append('../DeepConcolic/src')
 import argparse
 from MOD_BaseFunctions import createImageDirectory
 from run_detection_main import run_detection_main
@@ -31,7 +32,7 @@ def main():
                       help="ROI_centre")
     parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
                       help="ROI_centre")
-    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="C:/WPAFB-images/training/",
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
                       help="ROI_centre")
     parser.add_argument(
       '--ROI_window', dest='ROI_window', default='1000', help='the windows size of ROI')
@@ -53,7 +54,6 @@ def main():
     imagefolder = args.imagefolder
 
     running(attack,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template) 
-    
 '''
     for t in range(1000): 
         x = random.randint(3000,6000)
@@ -63,7 +63,6 @@ def main():
         running(False,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template) 
         running(True,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template) 
 '''
-
 if __name__=="__main__":
   main()
 
