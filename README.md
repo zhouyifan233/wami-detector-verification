@@ -9,7 +9,7 @@ Folder "DeepConcolic/src/" is necessary.
 
        conda install -c menpo opencv keras nltk matplotlib scikit-image
       
-       pip install saxpy sklearn hdf5storage
+       pip install saxpy sklearn hdf5storage adversarial-robustness-toolbox
 
 
 ### To start the tool
