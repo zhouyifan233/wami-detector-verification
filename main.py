@@ -1,45 +1,50 @@
 import sys
 import random
-sys.path.append('MovingObjectDetector')
-sys.path.append('TrainNetwork')
-sys.path.append('SimpleTracker')
-# Specify DeepConcolic src file here:
-sys.path.append('../DeepConcolic/src')
 import argparse
-from MOD_BaseFunctions import createImageDirectory
-from run_detection_main import run_detection_main
+# sys.path.append('MovingObjectDetector')
+# sys.path.append('TrainNetwork')
+# sys.path.append('SimpleTracker')
+# Specify DeepConcolic src file here:
+# sys.path.append('../DeepConcolic/src')
+from MovingObjectDetector.MOD_BaseFunctions import createImageDirectory
+from MovingObjectDetector.run_detection_main import run_detection_main
 
-def running(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder0,ROI_window,num_of_template): 
 
-    instance = "%s_%s_%s/"%(input_image_idx,ROI_centre[0],ROI_centre[1])
+def running(attack, model_folder, imagefolder, input_image_idx, ROI_centre, writeimagefolder0, ROI_window, num_of_template):
+
+    instance = "%s_%s_%s/"%(input_image_idx, ROI_centre[0], ROI_centre[1])
     createImageDirectory(writeimagefolder0+instance)
     if attack: 
         writeimagefolder = writeimagefolder0+instance+"attacked/"
     else: 
         writeimagefolder = writeimagefolder0+instance+"original/"
     createImageDirectory(writeimagefolder)
-    run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder,ROI_window,num_of_template) 
+    run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_centre, writeimagefolder, ROI_window, num_of_template)
 
 
 def main():
 
-    parser=argparse.ArgumentParser(description='Verification and Validation of WAMI Tracking' )
+    parser = argparse.ArgumentParser(description='Verification and Validation of WAMI Tracking' )
     parser.add_argument(
       '--image-index', dest='input_image_idx', default='10', help='the index of the input image in WASABI dataset')
     parser.add_argument("--attack", dest="attack", default="classification",
                       help="attack or not")
     parser.add_argument("--ROI_centre", dest="ROI_centre", default="4500, 5000",
                       help="ROI_centre")
-    parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
+    #parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="../savefig/",
+    #                  help="ROI_centre")
+    parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="C:/Workspace-python/savefig/",
                       help="ROI_centre")
-    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
+    #parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
+    #                  help="ROI_centre")
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="C:/WPAFB-images/training/",
                       help="ROI_centre")
     parser.add_argument(
       '--ROI_window', dest='ROI_window', default='1000', help='the windows size of ROI')
     parser.add_argument(
       '--num_of_template', dest='num_of_template', default='3', help='num of templates for [...]')
 
-    args=parser.parse_args()
+    args = parser.parse_args()
 
     attack = args.attack  
     input_image_idx = int(''.join(x for x in args.input_image_idx if x.isdigit()))
@@ -53,7 +58,7 @@ def main():
     model_folder = "Models/"
     imagefolder = args.imagefolder
 
-    running(attack,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template) 
+    running(attack, model_folder, imagefolder, input_image_idx, ROI_centre, args.writeimagefolder0, ROI_window, num_of_template)
 '''
     for t in range(1000): 
         x = random.randint(3000,6000)

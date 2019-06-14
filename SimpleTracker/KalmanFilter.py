@@ -44,8 +44,6 @@ class KalmanFilter:
         gate = np.sqrt(self.sigma_tplus1[0,0] + self.sigma_tplus1[1,1]) *2
         nbrs = NearestNeighbors(n_neighbors=1, algorithm='kd_tree').fit(measurements)
         distance, index = nbrs.kneighbors(self.predict_z.reshape(1, -1))
-        #print(index)
-        #print(distance)
         if distance > gate:
             print("No data association...")
             self.z = []

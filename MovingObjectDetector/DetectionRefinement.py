@@ -1,10 +1,10 @@
 import numpy as np
 import sys
-import TN_BaseFunctions as bf
+import TrainNetwork.TN_BaseFunctions as bf
 from sklearn.neighbors import NearestNeighbors
 import skimage.measure as measure
 import cv2
-from mcdc import mcdc, mcdc_regression_linf
+from DeepConcolic.src.mcdc import mcdc
 
 
 class DetectionRefinement:
@@ -49,12 +49,11 @@ class DetectionRefinement:
         X = X[mask1, ...]
         detections = self.original_detections[mask1, ...]
         X, _ = bf.DataNormalisationZeroCentred(X, self.aveImg_binary)
-        ## TODO: MCDC testing here
-        print('**** refinementID', self.refinementID)
 
         if ("classification" in self.attack) and not (self.refinementID is None):
         ##  pass # to call mcdc
-          res, X[self.refinementID] = mcdc(X[self.refinementID], self.model_binary, self.aveImg_binary,  mcdc_cond_ratio=0.99)
+            res, X[self.refinementID] = mcdc(X[self.refinementID], self.model_binary, self.aveImg_binary,  mcdc_cond_ratio=0.99)
+            self.refinementID = None
         ##  X[self.refinementID]=new_x
         ##  print ('res is ', res)
         ##  #if res: 

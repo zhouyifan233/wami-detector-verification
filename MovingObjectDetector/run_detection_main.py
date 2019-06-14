@@ -3,13 +3,13 @@ import cv2
 import timeit
 import hdf5storage
 import math
-import TN_BaseFunctions as basefunctions
+import TrainNetwork.TN_BaseFunctions as basefunctions
 from copy import copy
 from copy import deepcopy as deepcopy
-from BackgroundModel import BackgroundModel
-from DetectionRefinement import DetectionRefinement
-from KalmanFilter import KalmanFilter
-from MOD_BaseFunctions import TimePropagate, TimePropagate_, draw_error_ellipse2d
+from MovingObjectDetector.BackgroundModel import BackgroundModel
+from MovingObjectDetector.DetectionRefinement import DetectionRefinement
+from SimpleTracker.KalmanFilter import KalmanFilter
+from MovingObjectDetector.MOD_BaseFunctions import TimePropagate, TimePropagate_, draw_error_ellipse2d
 
 
 class location:
@@ -47,7 +47,8 @@ def diff_max(track1, track2):
 ####
 
 
-def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centre,writeimagefolder,ROI_window,num_of_template): 
+def run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_centre,
+                       writeimagefolder, ROI_window,num_of_template):
 
     ## to run the WAMI tracker
     ## d_out  : output directory
@@ -75,10 +76,10 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
 
     # initialise Kalman filter
     kf = KalmanFilter(np.array([[722], [1487], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
-    detections_all = []
-    detected_track = []
+    kf_attack = deepcopy(kf)
+    track_attack_store = []
+    track_store = []
     for i in range(20):
-        refinementID = None
         starttime = timeit.default_timer()
         # Read input image
         frame_idx = input_image_idx + image_idx_offset + i
@@ -101,14 +102,24 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
         regressedDetections = np.asarray(regressedDetections)
 
         # Kalman filter update
-        kf1 = deepcopy(kf)
-        # kf1_flag=False
         if i > 0:
+            # tracking without attack
             kf.TimePropagate(Hs[num_of_template - 1])
             kf.predict()
+            kf.NearestNeighbourAssociator(regressedDetections)
+            kf.update()
+            track_x = kf.mu_t[0, 0]
+            track_y = kf.mu_t[1, 0]
+            # propagate all detections
+            track_store = TimePropagate(track_store, Hs[num_of_template - 1])
+            track_store.append(np.array([track_x, track_y]).reshape(2, 1))
 
+            # tracking with attack
+            kf_attack.TimePropagate(Hs[num_of_template - 1])
+            kf_attack.predict()
             # the id in the regressed detections
-            regressionID = kf.NearestNeighbourAssociator(regressedDetections)
+            regressionID = kf_attack.NearestNeighbourAssociator(regressedDetections)
+
             # the id in the refinement detections (input to the CNN)
             old_kfz = kf.z
             if isinstance(regressionID, np.int64):
@@ -117,28 +128,22 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
                 print("Background subtraction id:" + str(refinementID))
                 print("Background subtraction id type:" + str(type(refinementID)))
             else:
+                refinementID = None
                 print("Data Association failed (No detection is assigned to this track)...")
+            # here to play 'attack': to call the dr again with refinementID
             if isinstance(refinementID, np.int64) and (i > 5):
-                #######  here to play 'attack': to call the dr again with refinementID
                 dr.refinementID = refinementID
-                # dr.refinementID=None
                 refinedDetections, refinedProperties = dr.doMovingVehicleRefinement()
                 regressedDetections = dr.doMovingVehiclePositionRegression()
                 regressedDetections = np.asarray(regressedDetections)
-                dr.refinementID = None
-
-                kf1.TimePropagate(Hs[num_of_template - 1])
-                kf1.predict()
                 # the id in the regressed detections
-                print('==== old regressionID', regressionID)
-                regressionID = kf1.NearestNeighbourAssociator(regressedDetections)
-                new_kfz = kf1.z
+                regressionID = kf_attack.NearestNeighbourAssociator(regressedDetections)
+                new_kfz = kf_attack.z
                 print('*********************')
                 print(old_kfz)
                 print('####')
                 print(new_kfz)
                 print('*********************')
-                print('==== new regressionID', regressionID)
                 # the id in the refinement detections (input to the CNN)
                 print('#### old refinementID', refinementID)
                 if regressionID is None:
@@ -147,64 +152,52 @@ def run_detection_main(attack,model_folder,imagefolder,input_image_idx,ROI_centr
                     regression2refinedID = dr.regressedDetectionID[regressionID]
                     refinementID = dr.refinedDetectionsID[regression2refinedID]
                     print('#### new refinementID', refinementID)
-                # kf1_flag=True
-                kf = deepcopy(kf1)
-
-            kf.update()
-            trackx = kf.mu_t[0, 0]
-            tracky = kf.mu_t[1, 0]
+            kf_attack.update()
+            track_attack_x = kf_attack.mu_t[0, 0]
+            track_attack_y = kf_attack.mu_t[1, 0]
             # propagate all detections
-            detections_all = TimePropagate(detections_all, Hs[num_of_template - 1])
-            detections_all.append(np.array([trackx, tracky]).reshape(2, 1))
-            print('Estimated State: ' + str(kf.mu_t.transpose()))
+            track_attack_store = TimePropagate(track_attack_store, Hs[num_of_template - 1])
+            track_attack_store.append(np.array([track_attack_x, track_attack_y]).reshape(2, 1))
+            print('Estimated State (Attacked): ' + str(kf.mu_t.transpose()))
         else:
-            trackx = kf.mu_t[0, 0]
-            tracky = kf.mu_t[1, 0]
-            # if kf1_flag:
-            #  trackx = kf1.mu_t[0,0]
-            #  tracky = kf1.mu_t[1,0]
-            detections_all.append(np.array([trackx, tracky]).reshape(2, 1))
+            track_attack_x = kf_attack.mu_t[0, 0]
+            track_attack_y = kf_attack.mu_t[1, 0]
+            track_attack_store.append(np.array([track_attack_x, track_attack_y]).reshape(2, 1))
+            track_x = kf.mu_t[0, 0]
+            track_y = kf.mu_t[1, 0]
+            track_store.append(np.array([track_x, track_y]).reshape(2, 1))
 
         # update background
         bgt.updateTemplate(input_image)
 
         # plt.figure()
-        minx = np.int32(trackx - 300)
-        miny = np.int32(tracky - 300)
-        maxx = np.int32(trackx + 301)
-        maxy = np.int32(tracky + 301)
+        minx = np.int32(track_attack_x - 300)
+        miny = np.int32(track_attack_y - 300)
+        maxx = np.int32(track_attack_x + 301)
+        maxy = np.int32(track_attack_y + 301)
         roi_image = np.repeat(np.expand_dims(input_image[miny:maxy, minx:maxx], -1), 3, axis=2)
         cv2.circle(roi_image, (301, 301), 10, (255, 0, 0), 1)
         validRegressedDetections = np.int32(copy(regressedDetections))
         validRegressedDetections[:, 0] = validRegressedDetections[:, 0] - minx
         validRegressedDetections[:, 1] = validRegressedDetections[:, 1] - miny
         for thisDetection in validRegressedDetections:
-            if thisDetection[0] > 0 and thisDetection[0] < 600 and thisDetection[1] > 0 and thisDetection[1] < 600:
+            if (thisDetection[0] > 0) and (thisDetection[0] < 600) and (thisDetection[1] > 0) and (thisDetection[1] < 600):
                 cv2.circle(roi_image, (thisDetection[0], thisDetection[1]), 3, (100, 100, 0), -1)
 
-        num_of_detections_all = len(detections_all)
+        for idx in range(1, len(track_attack_store)):
+            point1x = np.int32(track_attack_store[idx - 1][0, 0]) - minx
+            point1y = np.int32(track_attack_store[idx - 1][1, 0]) - miny
+            point2x = np.int32(track_attack_store[idx][0, 0]) - minx
+            point2y = np.int32(track_attack_store[idx][1, 0]) - miny
+            cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 0, 255), 1)
+        for idx in range(1, len(track_store)):
+            point1x = np.int32(track_store[idx - 1][0, 0]) - minx
+            point1y = np.int32(track_store[idx - 1][1, 0]) - miny
+            point2x = np.int32(track_store[idx][0, 0]) - minx
+            point2y = np.int32(track_store[idx][1, 0]) - miny
+            cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 255, 0), 1)
 
-        point1s = [None]
-        point2s = [None]
-
-        print('###')
-        for idx in range(1, num_of_detections_all):
-            point1x = np.int32(detections_all[idx - 1][0, 0]) - minx
-            point1y = np.int32(detections_all[idx - 1][1, 0]) - miny
-            point2x = np.int32(detections_all[idx][0, 0]) - minx
-            point2y = np.int32(detections_all[idx][1, 0]) - miny
-            point1s.append((point1x, point1y))
-            point2s.append((point2x, point2y))
-            if i > 0 and not (ref_track is None):
-                print(idx, ref_track[i].points[0][idx], ref_track[i].points[1][idx])
-                cv2.line(roi_image, ref_track[i].points[0][idx], ref_track[i].points[1][idx], (0, 255, 0), 1)
-            if ref_track is None:
-                cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 255, 0), 1)
-            else:
-                cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 0, 255), 1)
-        print('###')
-
-        detected_track.append(location(kf.mu_t[0] - minx, kf.mu_t[1] - miny, kf.sigma_t, [point1s, point2s]))
+        print('--------------------------------------------------------------------------------------------------------------')
 
         # draw_error_ellipse2d(roi_image, (kf1.mu_t[0]-minx, kf1.mu_t[1]-miny), kf1.sigma_t)
         # cv2.circle(input_image, (np.int32(trackx), np.int32(tracky)), 15, (255, 0, 0), 3)
