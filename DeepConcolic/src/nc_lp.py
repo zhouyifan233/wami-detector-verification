@@ -1,9 +1,13 @@
 try:
   import cplex
 except:
-  from DeepConcolic.src.solver import *
+  from solver import *
 
-from DeepConcolic.src.lp_encoding import *
+import sys
+import numpy as np
+
+from utils import *
+from lp_encoding import *
 import copy
 
 epsilon=1.0/(255)
