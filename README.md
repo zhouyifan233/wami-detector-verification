@@ -5,6 +5,13 @@
 1. DeepConcolic (https://github.com/TrustAI/DeepConcolic)
 Folder "DeepConcolic/src/" is necessary.
 
+2. Other packages including 
+
+       conda install -c menpo opencv keras nltk matplotlib scikit-image
+      
+       pip install saxpy sklearn hdf5storage adversarial-robustness-toolbox
+
+
 ### To start the tool
 
                   python main.py 
