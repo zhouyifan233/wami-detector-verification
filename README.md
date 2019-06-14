@@ -9,6 +9,8 @@ Folder "DeepConcolic/src/" is necessary.
 
        conda create -n wami-env python=3
        
+       conda activate wami-env
+       
        conda install -c menpo opencv keras nltk matplotlib scikit-image nomkl
       
        pip install saxpy sklearn hdf5storage adversarial-robustness-toolbox
