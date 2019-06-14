@@ -18,7 +18,7 @@ else:
 def running(attack, model_folder, imagefolder, input_image_idx, ROI_centre, writeimagefolder0, ROI_window, num_of_template):
 
     instance = "%s_%s_%s/"%(input_image_idx, ROI_centre[0], ROI_centre[1])
-    writeimagefolder = writeimagefolder0
+    writeimagefolder = writeimagefolder0 + instance
     createImageDirectory(writeimagefolder)
     run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_centre, writeimagefolder, ROI_window, num_of_template)
 
