@@ -61,15 +61,15 @@ def main():
     model_folder = "Models/"
     imagefolder = args.imagefolder
 
-    #running(attack, model_folder, imagefolder, input_image_idx, ROI_centre, args.writeimagefolder0, ROI_window, num_of_template)
-
+    running(attack, model_folder, imagefolder, input_image_idx, ROI_centre, args.writeimagefolder0, ROI_window, num_of_template)
+'''
     for t in range(1000): 
         x = random.randint(3000,6000)
         y = random.randint(3000,6000)
         ROI_centre = [x,y]
         print("**************** start working on (%s,%s)..."%(str(x),str(y)))
         running(attack,model_folder,imagefolder,input_image_idx,ROI_centre,args.writeimagefolder0,ROI_window,num_of_template)
-
+'''
 if __name__=="__main__":
   main()
 
