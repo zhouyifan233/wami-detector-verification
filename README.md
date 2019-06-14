@@ -7,7 +7,9 @@ Folder "DeepConcolic/src/" is necessary.
 
 2. Other packages including 
 
-       conda install -c menpo opencv keras nltk matplotlib scikit-image python=3
+       conda create -n wami-env python=3
+       
+       conda install -c menpo opencv keras nltk matplotlib scikit-image nomkl
       
        pip install saxpy sklearn hdf5storage adversarial-robustness-toolbox
 
