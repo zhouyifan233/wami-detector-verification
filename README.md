@@ -7,7 +7,7 @@ Folder "DeepConcolic/src/" is necessary.
 
 2. Other packages including 
 
-       conda install -c menpo opencv keras nltk matplotlib scikit-image
+       conda install -c menpo opencv keras nltk matplotlib scikit-image python=3
       
        pip install saxpy sklearn hdf5storage adversarial-robustness-toolbox
 
