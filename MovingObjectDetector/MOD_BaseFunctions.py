@@ -62,4 +62,4 @@ def createImageDirectory(file_path):
     try:
         os.stat(directory)
     except:
-        os.mkdir(directory)  
+        os.makedirs(directory, exist_ok=True)
