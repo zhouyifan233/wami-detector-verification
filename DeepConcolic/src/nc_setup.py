@@ -2,7 +2,17 @@
 from datetime import datetime
 import os
 
-from DeepConcolic.src.lp_encoding import *
+import keras
+from keras.models import *
+from keras.datasets import cifar10
+from keras.datasets import mnist
+from keras.applications.vgg16 import VGG16
+from keras.preprocessing.image import load_img
+from keras.layers import *
+from keras import *
+from utils import *
+from nc_lp import *
+from lp_encoding import *
 
 
 def nc_setup(test_object, outs):
@@ -57,7 +67,7 @@ def nc_setup(test_object, outs):
   return nc_results, layer_functions, cover_layers, activations, test_cases, adversarials
 
 def ssc_setup(test_object, outs):
-  print('\n== {0}, {1} ==\n'.format(test_object.criterion, test_object.norm))
+  print('\n== MC/DC (ssc) coverage for neural networks ==\n')
   if not os.path.exists(outs):
     os.system('mkdir -p {0}'.format(outs))
   if not outs.endswith('/'):
@@ -66,9 +76,9 @@ def ssc_setup(test_object, outs):
   nc_results=nc_results.replace(':', '-')
 
   layer_functions=get_layer_functions(test_object.dnn)
-  print('\n== Got layer functions: {0} ==\n'.format(len(layer_functions)))
+  print('\n== Total layers: {0} ==\n'.format(len(layer_functions)))
   cover_layers=get_cover_layers(test_object.dnn, 'SSC')
-  print('\n== Got cover layers: {0} ==\n'.format(len(cover_layers)))
+  print('\n== Cover-able layers: {0} ==\n'.format(len(cover_layers)))
 
   for i in range(0, len(cover_layers)):
     cover_layers[i].initialize_ubs()

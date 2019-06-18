@@ -4,7 +4,12 @@ import TrainNetwork.TN_BaseFunctions as bf
 from sklearn.neighbors import NearestNeighbors
 import skimage.measure as measure
 import cv2
-from DeepConcolic.src.mcdc import mcdc
+if sys.platform == 'darwin':
+    from mcdc import mcdc
+else:
+    from DeepConcolic.src.mcdc import mcdc
+
+
 
 
 class DetectionRefinement:

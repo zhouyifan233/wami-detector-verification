@@ -1,12 +1,26 @@
-import tensorflow as tf
+import argparse
+import sys
+from datetime import datetime
 
-from DeepConcolic.src.utils import *
+import keras
+from keras.models import *
+from keras.datasets import cifar10
+from keras.applications.vgg16 import VGG16
+from keras.layers import *
+from keras import *
+import tensorflow as tf
+import numpy as np
+
+import copy
+
+
+from utils import *
 
 try:
   from art.attacks.fast_gradient import FastGradientMethod
   from art.classifiers import KerasClassifier
 except:
-  from DeepConcolic.src.attacks import *
+  from attacks import *
 
 RP_SIZE=50 ## the top 50 pairs
 NNUM=1000000000
@@ -37,7 +51,8 @@ def local_search(dnn, local_input, ssc_pair, adv_crafter, e_max_input, ssc_ratio
   diff_map=None
   while e_max-e_min>=EPSILON:
     #print ('                     === in while')
-    x_adv_vect=adv_crafter.generate(x=np.array([local_input]), eps=e_max)
+    adv_crafter.set_params(eps=e_max)
+    x_adv_vect=adv_crafter.generate(x=np.array([local_input]))
     adv_acts=eval_batch(ssc_pair.layer_functions, x_adv_vect, is_input_layer(dnn.layers[0]))
     adv_cond_flags=adv_acts[ssc_pair.cond_layer.layer_index][0]
     adv_cond_flags[adv_cond_flags<=0]=0
@@ -91,7 +106,7 @@ def ssc_search(test_object, layer_functions, cond_layer, cond_pos, dec_layer, de
   new_x=None
   diff_map=None
   d_min=cond_layer.ssc_map.size
-  print ('d_min initialised', d_min, len(data))
+  print ('====== To catch independent condition change: {0}/{1}'.format(d_min, d_min))
 
   indices=np.random.choice(len(data), len(data))
 
@@ -100,10 +115,12 @@ def ssc_search(test_object, layer_functions, cond_layer, cond_pos, dec_layer, de
     inp_vect=np.array([data[i]])
     if adv_object is None:
       e_max_input=np.random.uniform(EPS_MAX*2/3, EPS_MAX)
-      adv_inp_vect=adv_crafter.generate(x=inp_vect, eps=e_max_input)
+      adv_crafter.set_params(eps=e_max_input)
+      adv_inp_vect=adv_crafter.generate(x=inp_vect)
     else:
       e_max_input=np.random.uniform(adv_object.max_v*EPS_MAX*2/3, adv_object.max_v*EPS_MAX)
-      adv_inp_vect=adv_crafter.generate(x=inp_vect, eps=e_max_input)
+      adv_crafter.set_params(eps=e_max_input)
+      adv_inp_vect=adv_crafter.generate(x=inp_vect)
       adv_inp_vect=np.clip(adv_inp_vect, adv_object.lb_v, adv_object.max_v)
     acts=eval_batch(layer_functions, inp_vect, is_input_layer(dnn.layers[0]))
     adv_acts=eval_batch(layer_functions, adv_inp_vect, is_input_layer(dnn.layers[0]))
@@ -127,13 +144,13 @@ def ssc_search(test_object, layer_functions, cond_layer, cond_pos, dec_layer, de
         y=labels[i]
       new_x=x_ret
       diff_map=diff_map_ret
-      print ('new d: ', d_min, cond_layer.ssc_map.size)
+      print ('====== Update independent condition change: {0}/{1}'.format(d_min, cond_layer.ssc_map.size))
       if d_min==1: break
 
-    print ("++++++",d_min, ssc_ratio, ssc_ratio*cond_layer.ssc_map.size)
+    #print ("++++++",d_min, ssc_ratio, ssc_ratio*cond_layer.ssc_map.size)
     if d_min<=ssc_ratio*cond_layer.ssc_map.size: break
     
-  print ('final d: ', d_min, ' count:', count)  
+  #print ('final d: ', d_min, ' count:', count)  
   if x is not None:
     d_norm=np.abs(new_x-x)
     return d_min, np.max(d_norm), new_x, x, [y], diff_map
@@ -153,7 +170,8 @@ def local_v_search(dnn, local_input, ssc_pair, adv_crafter, e_max_input, ssc_rat
   not_changed=0
   while e_max-e_min>=EPSILON:
     print ('                     === in while', e_max-e_min)
-    x_adv_vect=adv_crafter.generate(x=np.array([local_input]), eps=e_max)
+    adv_crafter.set_params(eps=e_max)
+    x_adv_vect=adv_crafter.generate(x=np.array([local_input]))
     adv_acts=eval_batch(ssc_pair.layer_functions, x_adv_vect, is_input_layer(dnn.layers[0]))
     adv_cond_flags=adv_acts[ssc_pair.cond_layer.layer_index][0]
     adv_cond_flags[adv_cond_flags<=0]=0
@@ -223,7 +241,8 @@ def svc_search(test_object, layer_functions, cond_layer, cond_pos, dec_layer, de
         e_max_input+=np.random.uniform(0, 0.1) #0.3
       else:
         e_max_input+=np.random.uniform(0, 0.05) #0.3
-      adv_inp_vect=adv_crafter.generate(x=inp_vect, eps=e_max_input)
+      adv_crafter.set_params(eps=e_max_input)
+      adv_inp_vect=adv_crafter.generate(x=inp_vect)
       adv_acts=eval_batch(layer_functions, adv_inp_vect, is_input_layer(dnn.layers[0]))
 
       dec2=(adv_acts[dec_layer.layer_index][0].item(dec_pos))
