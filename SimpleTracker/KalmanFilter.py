@@ -61,3 +61,4 @@ class KalmanFilter:
         newy = newxyz[1] / newxyz[2]
         self.mu_t[0] = newx
         self.mu_t[1] = newy
+
