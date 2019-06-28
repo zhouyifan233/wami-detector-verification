@@ -80,6 +80,7 @@ def run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_c
     track_attack_store = []
     track_store = []
     for i in range(20):
+        print("Starting the step %s:"%i)
         starttime = timeit.default_timer()
         # Read input image
         frame_idx = input_image_idx + image_idx_offset + i
