@@ -11,6 +11,7 @@ if sys.platform == 'darwin':
     from MOD_BaseFunctions import createImageDirectory
     from run_detection_main import run_detection_main
 else:
+    sys.path.append('DeepConcolic/src')
     from MovingObjectDetector.MOD_BaseFunctions import createImageDirectory
     from MovingObjectDetector.run_detection_main import run_detection_main
 
@@ -32,14 +33,14 @@ def main():
                       help="attack or not")
     parser.add_argument("--ROI_centre", dest="ROI_centre", default="4500, 5000",
                       help="ROI_centre")
-    parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="savefig/",
-                      help="ROI_centre")
-    #parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="C:/Workspace-python/savefig/",
+    #parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="savefig/",
     #                  help="ROI_centre")
-    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
+    parser.add_argument("--output-image-folder", dest="writeimagefolder0", default="C:/Workspace-python/savefig/",
                       help="ROI_centre")
-    #parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="C:/WPAFB-images/training/",
+    #parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="/Users/xiaowei/Dropbox/wasabi-detection-python-new/WAPAFB_images_train/training/",
     #                  help="ROI_centre")
+    parser.add_argument("--wasabi-image-folder", dest="imagefolder", default="C:/WPAFB-images/training/",
+                      help="ROI_centre")
     parser.add_argument("--deepconcolic-folder", dest="deepconcolic", default="../DeepConcolic/src/",
                       help="ROI_centre")
     parser.add_argument(

@@ -10,7 +10,7 @@ from MovingObjectDetector.BackgroundModel import BackgroundModel
 from MovingObjectDetector.DetectionRefinement import DetectionRefinement
 from SimpleTracker.KalmanFilter import KalmanFilter
 from MovingObjectDetector.MOD_BaseFunctions import TimePropagate, TimePropagate_, draw_error_ellipse2d
-
+from MovingObjectDetector.Init_Track_From_Groundtruth import init_Track_From_Groundtruth
 
 class location:
     def __init__(self, x, y, delta=None, points=None):
@@ -74,8 +74,25 @@ def run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_c
         images.append(ReadImage)
     bgt = BackgroundModel(num_of_template=num_of_template, templates=images)
 
+    # Work out initialisation of a track with groundtruth
+    frame_idx = input_image_idx + image_idx_offset
+    min_r = ROI_centre[1] - ROI_window
+    max_r = ROI_centre[1] + ROI_window
+    min_c = ROI_centre[0] - ROI_window
+    max_c = ROI_centre[0] + ROI_window
+    ImageForInitTrack = cv2.imread(imagefolder + "frame%06d.png" % frame_idx, cv2.IMREAD_GRAYSCALE)
+    Init_Candidate_tracks = init_Track_From_Groundtruth(TransformationMatrices, frame_idx, (min_r, max_r, min_c, max_c), Image=ImageForInitTrack)
+    print(Init_Candidate_tracks)
     # initialise Kalman filter
-    kf = KalmanFilter(np.array([[722], [1487], [0], [0]]), np.diag([900, 900, 400, 400]), 5, 6)
+    init_idx = 11
+    if init_idx >= len(Init_Candidate_tracks):
+        init_idx = 0
+        print("warning: the init track index is unavailable.")
+    x = Init_Candidate_tracks[init_idx][0]
+    y = Init_Candidate_tracks[init_idx][1]
+    vx = Init_Candidate_tracks[init_idx][2]
+    vy = Init_Candidate_tracks[init_idx][3]
+    kf = KalmanFilter(np.array([[x], [y], [vx], [vy]]), np.diag([900, 900, 400, 400]), 5, 6)
     kf_attack = deepcopy(kf)
     track_attack_store = []
     track_store = []
@@ -173,11 +190,20 @@ def run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_c
 
         # plt.figure()
         minx = np.int32(track_attack_x - 300)
+        if minx <= 0:
+            minx = 1
         miny = np.int32(track_attack_y - 300)
+        if miny <= 0:
+            miny = 1
         maxx = np.int32(track_attack_x + 301)
+        if maxx >= input_image.shape[1]:
+            maxx = input_image.shape[1]
         maxy = np.int32(track_attack_y + 301)
+        if maxy >= input_image.shape[0]:
+            maxy = input_image.shape[0]
+        print("write roi image windows: " + str(miny) + "," + str(maxy) + "," + str(minx) + "," + str(maxx))
         roi_image = np.repeat(np.expand_dims(input_image[miny:maxy, minx:maxx], -1), 3, axis=2)
-        cv2.circle(roi_image, (301, 301), 10, (255, 0, 0), 1)
+        # Not necessary: cv2.circle(roi_image, (301, 301), 10, (255, 0, 0), 1)
         validRegressedDetections = np.int32(copy(regressedDetections))
         validRegressedDetections[:, 0] = validRegressedDetections[:, 0] - minx
         validRegressedDetections[:, 1] = validRegressedDetections[:, 1] - miny
@@ -198,8 +224,6 @@ def run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_c
             point2y = np.int32(track_store[idx][1, 0]) - miny
             cv2.line(roi_image, (point1x, point1y), (point2x, point2y), (0, 255, 0), 1)
 
-        print('--------------------------------------------------------------------------------------------------------------')
-
         # draw_error_ellipse2d(roi_image, (kf1.mu_t[0]-minx, kf1.mu_t[1]-miny), kf1.sigma_t)
         # cv2.circle(input_image, (np.int32(trackx), np.int32(tracky)), 15, (255, 0, 0), 3)
         #print("writing into %s"%(writeimagefolder + "%05d.png" % i))
@@ -215,5 +239,5 @@ def run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_c
         """
         endtime = timeit.default_timer()
         print("Processing Time (Total): " + str(endtime - starttime) + " s... ")
-
+        print('-------------------------------------------------------------------------------------------------------')
 
