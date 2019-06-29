@@ -80,9 +80,14 @@ def run_detection_main(attack, model_folder, imagefolder, input_image_idx, ROI_c
     max_r = ROI_centre[1] + ROI_window
     min_c = ROI_centre[0] - ROI_window
     max_c = ROI_centre[0] + ROI_window
-    ImageForInitTrack = cv2.imread(imagefolder + "frame%06d.png" % frame_idx, cv2.IMREAD_GRAYSCALE)
-    Init_Candidate_tracks = init_Track_From_Groundtruth(TransformationMatrices, frame_idx, (min_r, max_r, min_c, max_c), Image=ImageForInitTrack)
-    print(Init_Candidate_tracks)
+    show_available_tracks = True
+    if show_available_tracks:
+        ImageForInitTrack = cv2.imread(imagefolder + "frame%06d.png" % frame_idx, cv2.IMREAD_GRAYSCALE)
+        Init_Candidate_tracks = init_Track_From_Groundtruth(TransformationMatrices, frame_idx, (min_r, max_r, min_c, max_c), Image=ImageForInitTrack)
+        print(Init_Candidate_tracks)
+    else:
+        Init_Candidate_tracks = init_Track_From_Groundtruth(TransformationMatrices, frame_idx, (min_r, max_r, min_c, max_c))
+
     # initialise Kalman filter
     init_idx = 11
     if init_idx >= len(Init_Candidate_tracks):

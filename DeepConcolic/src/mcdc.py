@@ -29,9 +29,12 @@ def mcdc(x, dnn, aveImg_binary, mcdc_cond_ratio=0.2, max_v=255, lb_v=-125.5, ub_
   f_results, layer_functions, cover_layers, _=ssc_setup(test_object, '/tmp/')
 
   d_advs=[]
-  f = open(f_results, "a")
-  f.write('#ssc runs;  #test cases;  #adversarial examples;  is feasible; is top-1 adversarial example; is top-x adversarial example; condition feature size; L infinity distance; L0 distance; decision layer index; dec feature; #condition layer neurons; new labels; original labels; coverage; local coverage\n')
-  f.close()
+  try:
+    f = open(f_results, "a")
+    f.write('#ssc runs;  #test cases;  #adversarial examples;  is feasible; is top-1 adversarial example; is top-x adversarial example; condition feature size; L infinity distance; L0 distance; decision layer index; dec feature; #condition layer neurons; new labels; original labels; coverage; local coverage\n')
+    f.close()
+  except:
+    pass
 
   tot_decs=0
   if test_object.layer_indices==None:
